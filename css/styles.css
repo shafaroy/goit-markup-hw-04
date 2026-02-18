@@ -54,6 +54,7 @@ body {
 
 .header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0 2px 4px rgba(46, 47, 66, 0.08);
 }
 
 .logo {
@@ -186,11 +187,13 @@ address {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(77, 90, 229, 0.3);
 }
 
 .hero-button:hover,
 .hero-button:focus {
   background-color: #404bbf;
+  box-shadow: 0 6px 12px rgba(77, 90, 229, 0.4);
 }
 
 .section-title {
@@ -327,16 +330,15 @@ address {
 }
 
 .portfolio-list {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 24px;
-  row-gap: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки рівної ширини */
+  column-gap: 24px; /* проміжки між колонками */
+  row-gap: 48px; /* проміжки між рядками */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.portfolio-item {
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: calc((100% - 48px) / 3);
-}
 .portfolio-item:hover,
 .portfolio-item:focus-within {
   box-shadow:
@@ -372,6 +374,11 @@ address {
   position: relative;
   overflow: hidden;
 }
+.portfolio-thumb img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
 
 .portfolio-overlay {
   position: absolute;
@@ -382,16 +389,30 @@ address {
   height: 100%;
   padding: 40px 32px;
 
-  background-color: #4d5ae5;
-  color: #f4f4fd;
-
-  transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(77, 90, 229, 0.85);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  transform: translateY(100%); /* ховаємо під картку */
+  opacity: 0;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .portfolio-item:hover .portfolio-overlay,
 .portfolio-item:focus-within .portfolio-overlay {
   transform: translateY(0);
+  opacity: 1;
+}
+.portfolio-overlay-text {
+  color: #fff;
+}
+.portfolio-text {
+  color: #434455;
 }
 
 .footer {
@@ -413,6 +434,26 @@ address {
   color: #f4f4fd;
 }
 
+.footer-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 120px;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-social-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+}
+
 .footer-social-list {
   display: flex;
   gap: 16px;
@@ -424,19 +465,20 @@ address {
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #4d5ae5;
   border-radius: 50%;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+.footer-social-link:hover,
+.footer-social-link:focus {
+  background-color: #404bbf;
+}
 .footer-social-link svg {
   fill: #f4f4fd;
 }
 
-.footer-social-link:hover,
-.footer-social-link:focus {
-  background-color: #31d0aa;
-}
 img {
   display: block;
   max-width: 100%;
